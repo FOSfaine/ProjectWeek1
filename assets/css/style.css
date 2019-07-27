@@ -1,0 +1,10 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-size: 24px;
+    background-color: rgb(46, 46, 46);
+    color: white;
+}
