@@ -13,9 +13,7 @@ $(document).ready(function(window) {
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
-  // CoinAPI
-  var unirest = require("unirest");
+  var database = firebase.database();
 
   var req = unirest(
     "GET",
