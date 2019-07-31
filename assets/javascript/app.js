@@ -1,5 +1,5 @@
-$(document).ready(function (window) {
-    console.log("document ready");
+$(document).ready(function(window) {
+  console.log("document ready");
 
   var firebaseConfig = {
     apiKey: "AIzaSyCJF2Rjt64-Xubs-mipH-tF42L4_Vz9R0Y",
@@ -14,80 +14,77 @@ $(document).ready(function (window) {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+  // CoinAPI
+  var unirest = require("unirest");
 
-// CoinAPI
-var unirest = require("unirest");
+  var req = unirest(
+    "GET",
+    "https://coinapi.p.rapidapi.com/v1/exchangerate/USD"
+  );
 
-var req = unirest("GET", "https://coinapi.p.rapidapi.com/v1/exchangerate/USD");
+  req.headers({
+    "x-rapidapi-host": "coinapi.p.rapidapi.com",
+    "x-rapidapi-key": "8a398d0356msh92b4964ad1b331dp1482c2jsna497f038258b"
+  });
 
-req.headers({
-	"x-rapidapi-host": "coinapi.p.rapidapi.com",
-	"x-rapidapi-key": "8a398d0356msh92b4964ad1b331dp1482c2jsna497f038258b"
-});
+  req.end(function(res) {
+    if (res.error) throw new Error(res.error);
 
+    console.log(res.body);
+  });
 
-req.end(function (res) {
-	if (res.error) throw new Error(res.error);
+  // Currency Exchange
+  var unirest = require("unirest");
 
-	console.log(res.body);
-});
+  var req = unirest("GET", "https://currency-exchange.p.rapidapi.com/exchange");
 
+  req.query({
+    q: "1.0",
+    from: "USD",
+    to: "GBP"
+  });
 
-// Currency Exchange
-var unirest = require("unirest");
+  req.headers({
+    "x-rapidapi-host": "currency-exchange.p.rapidapi.com",
+    "x-rapidapi-key": "8a398d0356msh92b4964ad1b331dp1482c2jsna497f038258b"
+  });
 
-var req = unirest("GET", "https://currency-exchange.p.rapidapi.com/exchange");
+  req.end(function(res) {
+    if (res.error) throw new Error(res.error);
 
-req.query({
-	"q": "1.0",
-	"from": "USD",
-	"to": "GBP"
-});
+    console.log(res.body);
+  });
 
-req.headers({
-	"x-rapidapi-host": "currency-exchange.p.rapidapi.com",
-	"x-rapidapi-key": "8a398d0356msh92b4964ad1b331dp1482c2jsna497f038258b"
-});
+  // This is the NYT API search, but it has search input parameters built-in (search-term and start/end dates).
+  // We probably don't want those on the HTML, but will want to add parameters to our API call for the crupto-news sidebar.
 
+  function buildQueryURL() {
+    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
 
-req.end(function (res) {
-	if (res.error) throw new Error(res.error);
+    var queryParams = { "api-key": "R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M" };
 
-	console.log(res.body);
-})
+    queryParams.q = $("#search-term")
+      .val()
+      .trim();
 
+    var startYear = $("#start-year")
+      .val()
+      .trim();
 
-// This is the NYT API search, but it has search input parameters built-in (search-term and start/end dates).
-// We probably don't want those on the HTML, but will want to add parameters to our API call for the crupto-news sidebar.
+    if (parseInt(startYear)) {
+      queryParams.begin_date = startYear + "0101";
+    }
 
-function buildQueryURL() {
-  var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+    var endYear = $("#end-year")
+      .val()
+      .trim();
 
-  var queryParams = { "api-key": "R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M" };
+    if (parseInt(endYear)) {
+      queryParams.end_date = endYear + "0101";
+    }
 
-  queryParams.q = $("#search-term")
-    .val()
-    .trim();
-
-  var startYear = $("#start-year")
-    .val()
-    .trim();
-
-  if (parseInt(startYear)) {
-    queryParams.begin_date = startYear + "0101";
+    console.log("---------------\nURL: " + queryURL + "\n---------------");
+    console.log(queryURL + $.param(queryParams));
+    return queryURL + $.param(queryParams);
   }
-
-  var endYear = $("#end-year")
-    .val()
-    .trim();
-
-  if (parseInt(endYear)) {
-    queryParams.end_date = endYear + "0101";
-  }
-
-  console.log("---------------\nURL: " + queryURL + "\n---------------");
-  console.log(queryURL + $.param(queryParams));
-  return queryURL + $.param(queryParams);
-}
-
-})
+});
