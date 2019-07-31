@@ -13,5 +13,47 @@ $(document).ready(function (window) {
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  
+
+
+// CoinAPI
+var unirest = require("unirest");
+
+var req = unirest("GET", "https://coinapi.p.rapidapi.com/v1/exchangerate/USD");
+
+req.headers({
+	"x-rapidapi-host": "coinapi.p.rapidapi.com",
+	"x-rapidapi-key": "8a398d0356msh92b4964ad1b331dp1482c2jsna497f038258b"
+});
+
+
+req.end(function (res) {
+	if (res.error) throw new Error(res.error);
+
+	console.log(res.body);
+});
+
+
+// Currency Exchange
+var unirest = require("unirest");
+
+var req = unirest("GET", "https://currency-exchange.p.rapidapi.com/exchange");
+
+req.query({
+	"q": "1.0",
+	"from": "USD",
+	"to": "GBP"
+});
+
+req.headers({
+	"x-rapidapi-host": "currency-exchange.p.rapidapi.com",
+	"x-rapidapi-key": "8a398d0356msh92b4964ad1b331dp1482c2jsna497f038258b"
+});
+
+
+req.end(function (res) {
+	if (res.error) throw new Error(res.error);
+
+	console.log(res.body);
+})
+
 })
