@@ -7,4 +7,49 @@ body {
     font-size: 24px;
     background-color: rgb(46, 46, 46);
     color: white;
+
+}
+
+.container-style {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 100px 100px;
+}
+
+.log-out,
+.user-content,
+.side-content,
+.bottom-content,
+.main-content {
+    background-color: rgb(65, 65, 65);
+    text-align: center;
+    color: white;
+    border: 1px solid black;
+}
+
+.main-content {
+    grid-column: 2/3;
+    grid-row: 1;
+}
+
+.side-content {
+    grid-column: 1/2;
+    grid-row: 1;
+}
+
+
+.bottom-content {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.log-out {
+    grid-column: 1/2;
+}
+
+.user-content {
+    grid-column: 2/3;
 }
