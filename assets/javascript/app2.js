@@ -40,18 +40,12 @@ function buildQueryURL() {
 
   var apiKey = { "api-key": "R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M" };
   
-  var queryParamsQ = "";
+  var queryParams = "";
 
   var startYear0101= "";
 
   var endYear0101 = "";
 
-  if (parseInt(startYear)) {
-    queryParams.begin_date = startYear + "0101";
-  }
-
-  if (parseInt(endYear)) {
-    queryParams.end_date = endYear + "0101";
   return queryURL + $.param(queryParams);
 }
 
