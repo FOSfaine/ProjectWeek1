@@ -15,47 +15,26 @@ $(document).ready(function (window) {
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database();
 
-  // CoinAPI
-  var unirest = require("unirest");
 
-  var req = unirest("GET", "https://coinapi.p.rapidapi.com/v1/exchangerate/USD");
 
-  req.headers({
-    "x-rapidapi-host": "coinapi.p.rapidapi.com",
-    "x-rapidapi-key": "8a398d0356msh92b4964ad1b331dp1482c2jsna497f038258b"
+  // ***CoinAPI***
+  // var queryURL = "https://coinapi.p.rapidapi.com/v1/quotes/current";
+  //populate queryURL with cryptocurrency coin symbol chosen in search bar. Example here is Bitcoin (BTC)
+  var coinSymbol = "IDAX_SPOT_ETH_BTC";
+  var queryURL = "https://coinapi.p.rapidapi.com/v1/quotes/" + coinSymbol + "/current";
+
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "coinapi.p.rapidapi.com",
+      "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
+    }
+  }).then(function (response) {
+    console.log(response);
+    // $("#).text(JSON.stringify(response))
   });
 
-
-
-  req.end(function (res) {
-    if (res.error) throw new Error(res.error);
-
-    console.log(res.body);
-  });
-
-
-  // Currency Exchange
-  var unirest = require("unirest");
-
-  var req = unirest("GET", "https://currency-exchange.p.rapidapi.com/exchange");
-
-  req.query({
-    "q": "1.0",
-    "from": "USD",
-    "to": "GBP"
-  });
-
-  req.headers({
-    "x-rapidapi-host": "currency-exchange.p.rapidapi.com",
-    "x-rapidapi-key": "8a398d0356msh92b4964ad1b331dp1482c2jsna497f038258b"
-  });
-
-
-  req.end(function (res) {
-    if (res.error) throw new Error(res.error);
-
-    console.log(res.body);
-  })
 
   // Firebase Auth
 
@@ -102,4 +81,5 @@ $(document).ready(function (window) {
   //   photoUrl = user.photoURL;
   //   emailVerified = user.emailVerified;
   // })
+
 });
