@@ -58,6 +58,17 @@ $(document).ready(function (window) {
   })
 
   // Firebase Auth
+
+
+  // New User 
+  // firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  //   // Handle Errors here.
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+  //   // ...
+  // });
+
+  // Sign-In
   // var email = $("#emailInput").val()
   // var password = $("#emailInput").val()
   // var runAuth = firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
