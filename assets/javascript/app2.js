@@ -239,6 +239,8 @@ $.ajax({
 
 
 // ***Currency Exchange API call***
+// var queryURL = "https://currency-exchange.p.rapidapi.com/exchange";
+
 // var queryURL = "https://currency-exchange.p.rapidapi.com/exchange?q=1.0&from=USD&to=GBP";
 
 var amount = "1.0";
@@ -246,10 +248,6 @@ var currency1 = "USD";
 var currency2 = "GBP";
 
 var queryURL2 = "'https://currency-exchange.p.rapidapi.com/exchange?q' + amount + '&' + 'from=' + currency1 + '&' + 'to=' + currency2";
-
-var amount = "1.0";
-var currency1 = "USD";
-var currency2 = "GBP";
 
 $.ajax({
   url: queryURL2,
@@ -262,3 +260,31 @@ $.ajax({
   console.log(response);
   // $("#).text(JSON.stringify(response))
 });
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+for (var i = 0; i < response.length; i++) {
+  response {
+    [i].asset_id
+      [i].name
+  }
+}
+
+for (i = 0; i < response.data.length; i++) {
+  var animateUrl = response.data[i].images.original.url;
+  var stillUrl = response.data[i].images.original_still.url;
+
+  // under each gif, display rating
+  var rating = response.data[i].rating;
+  var giphRating = $("<p>").text("Rating: " + rating);
+  $("#giph-view").prepend(giphRating);
+
+  // Creates an image tag to hold the giph
+  var giphImage = $("<img>");
+  giphImage.attr("data-state", "still");
+  giphImage.attr("data-still", stillUrl);
+  giphImage.attr("src", stillUrl);
+  giphImage.attr("data-animate", animateUrl);
+  giphImage.attr("class", "clips");
+  $("#giph-view").prepend(giphImage);
+}

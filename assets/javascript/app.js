@@ -19,8 +19,11 @@ $(document).ready(function (window) {
   // ***CoinAPI***
   // var queryURL = "https://coinapi.p.rapidapi.com/v1/quotes/current";
   //populate queryURL with cryptocurrency coin symbol chosen in search bar. Example here is Bitcoin (BTC)
-  var coinSymbol = "IDAX_SPOT_ETH_BTC";
-  var queryURL = "https://coinapi.p.rapidapi.com/v1/quotes/" + coinSymbol + "/current";
+
+  // var coinSymbol = "IDAX_SPOT_ETH_BTC";
+  // var queryURL = "https://coinapi.p.rapidapi.com/v1/quotes/" + coinSymbol + "/current";
+
+  var queryURL = "https://coinapi.p.rapidapi.com/v1/assets/";
 
   $.ajax({
     url: queryURL,
@@ -30,8 +33,18 @@ $(document).ready(function (window) {
       "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
     }
   }).then(function (response) {
-    console.log(response);
-    // $("#).text(JSON.stringify(response))
+    // console.log(response);
+
+    for (var i = 0; i < response.length; i++) {
+      //***I am identifying name of the coin and assetId for each coin to search for coin data on search***/
+      var assetId = response[i].asset_id;
+      var coinName = response[i].name;
+      // var listAssetbyName = $("<div>").text("Coin name: " + coinName + ";" + "Asset ID:" + assetId + ".");
+      // $("#").append(listAssetbyName);
+      // or:
+      // $("#).text(JSON.stringify(listAssetbyName))
+      console.log(assetId, coinName);
+    }
   });
 
   // ***Currency Exchange API call***
@@ -53,7 +66,6 @@ $(document).ready(function (window) {
     }
   }).then(function (response) {
     console.log(response);
-    // $("#).text(JSON.stringify(response))
   });
 
 });
