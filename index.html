@@ -2,37 +2,45 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Crypto Knight</title>
   <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+
   <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-database.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
+
+
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#config-web-app -->
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
   <!-- stylesheet -->
-  <link rel="stylesheet" href="assets/css/reset.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/reset.css" />
+  <link rel="stylesheet" href="assets/css/homepage.css" />
 </head>
 
 <body>
-  <nav>CRYPTO KNIGHT Esther test branch</nav>
+  <nav>
+    CRYPTO KNIGHT Esther test branch
+    <div>
+      <a>Sign Up</a>
+      <form action="submit">
+        Email: <input type="text" id="emailNew" placeholder="CryptoKnight@email.com" />
+        Pass: <input type="password" id="passNew" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
+        <input type="submit" name="submit" id="submitNew">
+      </form>
+    </div>
+  </nav>
 
-  <div class="container-style">
+  <div class=" container-style">
     <div class="main-content">Main Content Section</div>
     <div class="side-content">Sidebar Section</div>
-    <div class="bottom-content">
-      <div class="log-out">
-        Log Out Button
-      </div>
-      <div class="user-content">
-        user Buttons Section
-      </div>
-    </div>
   </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
