@@ -214,3 +214,51 @@ function buildQueryURL() {
   console.log(queryURL + $.param(queryParams));
   return queryURL + $.param(queryParams);
 }
+
+
+// ***Currency Exchange API call***
+var queryURL = "https://currency-exchange.p.rapidapi.com/exchange";
+
+$.ajax({
+  url: queryURL,
+  method: "GET",
+  headers: {
+    "x-rapidapi-host": "currency-exchange.p.rapidapi.com",
+    "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
+  }
+  query: {
+    q: "1.0",
+    from: "USD",
+    to: "GBP"
+  }
+}).then(function (response) {
+  console.log(response);
+  // $("#).text(JSON.stringify(response))
+});
+
+
+
+// ***Currency Exchange API call***
+// var queryURL = "https://currency-exchange.p.rapidapi.com/exchange?q=1.0&from=USD&to=GBP";
+
+var amount = "1.0";
+var currency1 = "USD";
+var currency2 = "GBP";
+
+var queryURL2 = "'https://currency-exchange.p.rapidapi.com/exchange?q' + amount + '&' + 'from=' + currency1 + '&' + 'to=' + currency2";
+
+var amount = "1.0";
+var currency1 = "USD";
+var currency2 = "GBP";
+
+$.ajax({
+  url: queryURL2,
+  method: "GET",
+  headers: {
+    "x-rapidapi-host": "currency-exchange.p.rapidapi.com",
+    "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
+  }
+}).then(function (response) {
+  console.log(response);
+  // $("#).text(JSON.stringify(response))
+});
