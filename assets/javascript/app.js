@@ -39,13 +39,17 @@ $(document).ready(function (window) {
   // Firebase Auth
 
 
-  // // New User
-  // firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-  //   // Handle Errors here.
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  //   // ...
-  // });
+  $("#submitNew").on('click', () => {
+    var userEmail = $("#emailNew").val().trim()
+    var userPass = $("#passNew").val().trim()
+    firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+  })
+  // 
 
   // // Sign - In
   // var userEmail = $("#emailInput").val()
