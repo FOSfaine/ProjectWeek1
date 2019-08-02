@@ -5,11 +5,10 @@ body {
 
 body {
     background-color: rgb(231, 231, 231);
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .container-style {
-    background-color: white;
     display: grid;
     grid-template-columns: 25% 75%;
     grid-template-rows: 100px 100px;
@@ -21,9 +20,9 @@ body {
 .side-content,
 .bottom-content,
 .main-content {
-    background-color: rgb(65, 65, 65);
+    background-color: rgb(255, 255, 255);
     text-align: center;
-    color: white;
+    color: black;
     border: 1px solid black;
 }
 
