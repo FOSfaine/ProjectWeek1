@@ -13,8 +13,8 @@ $(document).ready(function (window) {
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  var database = firebase.database();
-
+  const db = firebase.firestore();
+  const auth = firebase.auth()
 
   // ***CoinAPI***
   // var queryURL = "https://coinapi.p.rapidapi.com/v1/quotes/current";
@@ -56,105 +56,104 @@ $(document).ready(function (window) {
     // $("#).text(JSON.stringify(response))
   });
 
-<<<<<<< HEAD
-});
-
-
-// Firebase Auth
-
-
-// // New User
-// firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // ...
-// });
-
-// // Sign - In
-// var userEmail = $("#emailInput").val()
-// var userPassword = $("#emailInput").val()
-// var runAuth = firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // ...
-// });
-
-// // User SignOut
-// firebase.auth().signOut().then(function () {
-//   // Sign-out successful.
-// }).catch(function (error) {
-//   // An error happened.
-// });
-
-// firebase.auth().onAuthStateChanged(function (user) {
-//   if (user) {
-//     // User is signed in.
-//   } else {
-//     // No user is signed in.
-//   }
-// });
-
-// var user = firebase.auth().currentUser;
-// var name, email, photoUrl, uid, emailVerified;
-
-// if (user != null) {
-//   name = user.displayName;
-//   email = user.email;
-//   photoUrl = user.photoURL;
-//   emailVerified = user.emailVerified;
-// })
-=======
   // Firebase Auth
 
 
   $("#submitNew").on('click', () => {
     var userEmail = $("#emailNew").val().trim()
     var userPass = $("#passNew").val().trim()
-    firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function (error) {
+
+    // Passwork check and make sure the email is not already in our system
+    if (passCheck(userPass)) {
+      firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+      });
+      $("#emailNew").text("")
+      $("#passNew").text("")
+
+    } else {
+      console.log("Invaild Password")
+    }
+    if (user) {
+      user.updateEmail(userEmail).then(function () {
+        // Update successful.
+      }).catch(function (error) {
+        console.log("nope nope nope")
+      });
+
+      user.updatePassword(userPass).then(function () {
+        // Update successful.
+      }).catch(function (error) {
+        console.log("naaa")
+      });
+      console.log("creation success")
+    }
+  })
+
+  function passCheck(pass) {
+    // Must use a capital letter 
+    var lowercase = pass.toLowerCase()
+    if (lowercase === pass) {
+      return false
+    } else {
+      return true
+    }
+    // idk something for numbers or symbols 
+  }
+  // Checks to see if the submitted email is in our records
+  function emailCheck() {}
+
+  $("#submitLogin").on('click', () => {
+    var userEmail = $("#loginEmail").val().trim()
+    var userPass = $("#loginPass").val().trim()
+    firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
-      // ...
+      //   // ...
+    });
+
+  })
+
+  $("#logOut").on('click', () => {
+    firebase.auth().signOut().then(function () {
+      // Sign-out successful.
+      console.log("signing OUT")
+    }).catch(function (error) {
+      // An error happened.
     });
   })
-  // 
 
-  // // Sign - In
-  // var userEmail = $("#emailInput").val()
-  // var userPassword = $("#emailInput").val()
-  // var runAuth = firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-  //   // Handle Errors here.
-  //   var errorCode = error.code;
-  //   var errorMessage = error.message;
-  //   // ...
-  // });
+  var user = firebase.auth().currentUser;
+  var name, email, photoUrl, uid, emailVerified;
 
-  // // User SignOut
-  // firebase.auth().signOut().then(function () {
-  //   // Sign-out successful.
-  // }).catch(function (error) {
-  //   // An error happened.
-  // });
+  var userName = ""
+  var userEmail = ""
+  var userPhoto = ""
+  var userEmailVerified = ""
 
-  // firebase.auth().onAuthStateChanged(function (user) {
-  //   if (user) {
-  //     // User is signed in.
-  //   } else {
-  //     // No user is signed in.
-  //   }
-  // });
+  firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      console.log("Ayo we logged in")
 
-  // var user = firebase.auth().currentUser;
-  // var name, email, photoUrl, uid, emailVerified;
 
-  // if (user != null) {
-  //   name = user.displayName;
-  //   email = user.email;
-  //   photoUrl = user.photoURL;
-  //   emailVerified = user.emailVerified;
-  // })
+      userName = user.displayName;
+      userEmail = user.email;
+      userPhoto = user.photoURL;
+      userEmailVerified = user.emailVerified;
+
+      console.log(userEmail)
+    } else {
+      console.log("no user sign-in")
+    }
+  });
+
+
+
+
+
 
 });
->>>>>>> on click
