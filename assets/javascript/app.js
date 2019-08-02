@@ -56,6 +56,7 @@ $(document).ready(function (window) {
     // $("#).text(JSON.stringify(response))
   });
 
+<<<<<<< HEAD
 });
 
 
@@ -104,3 +105,56 @@ $(document).ready(function (window) {
 //   photoUrl = user.photoURL;
 //   emailVerified = user.emailVerified;
 // })
+=======
+  // Firebase Auth
+
+
+  $("#submitNew").on('click', () => {
+    var userEmail = $("#emailNew").val().trim()
+    var userPass = $("#passNew").val().trim()
+    firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+  })
+  // 
+
+  // // Sign - In
+  // var userEmail = $("#emailInput").val()
+  // var userPassword = $("#emailInput").val()
+  // var runAuth = firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+  //   // Handle Errors here.
+  //   var errorCode = error.code;
+  //   var errorMessage = error.message;
+  //   // ...
+  // });
+
+  // // User SignOut
+  // firebase.auth().signOut().then(function () {
+  //   // Sign-out successful.
+  // }).catch(function (error) {
+  //   // An error happened.
+  // });
+
+  // firebase.auth().onAuthStateChanged(function (user) {
+  //   if (user) {
+  //     // User is signed in.
+  //   } else {
+  //     // No user is signed in.
+  //   }
+  // });
+
+  // var user = firebase.auth().currentUser;
+  // var name, email, photoUrl, uid, emailVerified;
+
+  // if (user != null) {
+  //   name = user.displayName;
+  //   email = user.email;
+  //   photoUrl = user.photoURL;
+  //   emailVerified = user.emailVerified;
+  // })
+
+});
+>>>>>>> on click
