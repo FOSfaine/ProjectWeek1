@@ -41,7 +41,7 @@ $(document).ready(function (window) {
   });
 
 
-  // ***Currency Exchange API call***
+  // ***Currency Exchange API code***
   var amount = "1.0";
   var currency1 = "USD";
   var currency2 = "GBP";
@@ -60,7 +60,6 @@ $(document).ready(function (window) {
   });
 
   // Firebase Auth
-
 
   $("#submitNew").on('click', () => {
     var userEmail = $("#emailNew").val().trim()
@@ -142,7 +141,6 @@ $(document).ready(function (window) {
     if (user) {
       console.log("Ayo we logged in")
 
-
       userName = user.displayName;
       userEmail = user.email;
       userPhoto = user.photoURL;
@@ -154,6 +152,8 @@ $(document).ready(function (window) {
     }
   });
 
+
+  //NYT API code
   function populateNews() {
     var news = $(this).attr("data-name");
     var queryURL =
@@ -180,8 +180,5 @@ $(document).ready(function (window) {
     });
   }
   populateNews();
-
-
-
 
 });
