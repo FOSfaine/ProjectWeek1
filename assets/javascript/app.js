@@ -17,13 +17,8 @@ $(document).ready(function (window) {
   const auth = firebase.auth()
 
   // ***CoinAPI***
-  // var queryURL = "https://coinapi.p.rapidapi.com/v1/quotes/current";
-  //populate queryURL with cryptocurrency coin symbol chosen in search bar. Example here is Bitcoin (BTC)
-
-  // var coinSymbol = "IDAX_SPOT_ETH_BTC";
-  // var queryURL = "https://coinapi.p.rapidapi.com/v1/quotes/" + coinSymbol + "/current";
-
-  var queryURL = "https://coinapi.p.rapidapi.com/v1/assets/";
+  //This api call pulls assets (in asset_id by symbol) requested and pairs with asset_id_base (in USD):
+  var queryURL = "https://coinapi.p.rapidapi.com/v1/exchangerate/USD";
 
   $.ajax({
     url: queryURL,
@@ -33,29 +28,25 @@ $(document).ready(function (window) {
       "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
     }
   }).then(function (response) {
-    // console.log(response);
 
-    for (var i = 0; i < response.length; i++) {
-      //***I am identifying name of the coin and assetId for each coin to search for coin data on search***/
-      var assetId = response[i].asset_id;
-      var coinName = response[i].name;
-      // var listAssetbyName = $("<div>").text("Coin name: " + coinName + ";" + "Asset ID:" + assetId + ".");
-      // $("#").append(listAssetbyName);
-      // or:
-      // $("#).text(JSON.stringify(listAssetbyName))
-      console.log(assetId, coinName);
+    var ratesArray = response.rates;
+
+    for (var j = 0; j < 99; j++) {
+
+      var assetId = ratesArray[j].asset_id_quote;
+      var assetRate = ratesArray[j].rate;
+
+      console.log("assetId: " + assetId, "assetRate: " + assetRate);
     }
   });
 
+
   // ***Currency Exchange API call***
+  var amount = "1.0";
+  var currency1 = "USD";
+  var currency2 = "GBP";
 
-  // Add variable to get exchange from different fiat currencies:
-  // var amount = "1.0";
-  // var currency1 = "USD";
-  // var currency2 = "GBP";
-  // var queryURL2 = "'https://currency-exchange.p.rapidapi.com/exchange?q=' + amount + '&' + 'from=' + currency1 + '&' + 'to=' + currency2";
-
-  var queryURL = "https://currency-exchange.p.rapidapi.com/exchange?q=1.0&from=USD&to=GBP";
+  var queryURL = 'https://currency-exchange.p.rapidapi.com/exchange?q=' + amount + '&from=' + currency1 + '&to=' + currency2;
 
   $.ajax({
     url: queryURL,
@@ -65,7 +56,7 @@ $(document).ready(function (window) {
       "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
     }
   }).then(function (response) {
-    console.log(response);
+    console.log("currency converted: " + response);
   });
 
   // Firebase Auth
@@ -163,7 +154,32 @@ $(document).ready(function (window) {
     }
   });
 
+  function populateNews() {
+    var news = $(this).attr("data-name");
+    var queryURL =
+      "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=cryptocurrency&api-key=F86BqhNAvBubVGR0OjFhBa8R1QbGr3gD";
 
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function (NYTData) {
+      console.log(NYTData);
+      $("#news-view").text(JSON.stringify(NYTData));
+      for (var i = 0; i < 10; i++) {
+        var tempHeadliner = NYTData.response.docs[i].headline.main;
+        var tempLink = NYTData.response.docs[i].web_url;
+        console.log(NYTData.response.docs[i].headline.main);
+        $(".side-content").append(
+          $("<div>").append(
+            $("<a>")
+            .attr("href", "web_url")
+            .text(tempHeadliner)
+          )
+        );
+      }
+    });
+  }
+  populateNews();
 
 
 
