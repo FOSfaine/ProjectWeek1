@@ -36,7 +36,7 @@ $(document).ready(function (window) {
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
 
-      console.log("Coin: " + assetId, " " + assetRate + " USD");
+      console.log("assetId: " + assetId, "assetRate: " + assetRate);
     }
   });
 
@@ -58,7 +58,6 @@ $(document).ready(function (window) {
   }).then(function (response) {
     console.log("currency converted: " + response);
   });
-
 
   // Firebase Auth
 
