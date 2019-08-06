@@ -15,7 +15,7 @@ $(document).ready(() => {
             });
             $("#emailNew").text("")
             $("#passNew").text("")
-            window.location.href = "../user-index.html"
+
 
         } else {
             console.log("Invaild Password")
@@ -56,12 +56,12 @@ $(document).ready(() => {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-
+            $("#xpw").removeAttr("hidden")
         });
 
     })
 
-    $("#logOut").on('click', () => {
+    $("#log-out").on('click', () => {
         firebase.auth().signOut().then(function () {
             // Sign-out successful.
             console.log("signing OUT")
@@ -86,10 +86,15 @@ $(document).ready(() => {
             userEmail = user.email;
             userPhoto = user.photoURL;
             userEmailVerified = user.emailVerified;
+            if (window.location != "https://estherecho.github.io/ProjectWeek1/user-index.html")
 
-            console.log(userEmail)
+                window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html")
         } else {
             console.log("no user sign-in")
+            if (window.location != "https://estherecho.github.io/ProjectWeek1/index.html")
+                // window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html");
+                window.location.replace("https://estherecho.github.io/ProjectWeek1/index.html")
+
         }
     });
 

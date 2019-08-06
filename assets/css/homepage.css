@@ -52,3 +52,7 @@ body {
 .user-content {
     grid-column: 2/3;
 }
+
+#xpw {
+    color: red;
+}
