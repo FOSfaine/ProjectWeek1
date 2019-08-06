@@ -35,7 +35,7 @@ $(document).ready(function (window) {
 
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
-
+      $("#currencies").append($("<option>").val(assetId));
       console.log("Coin: " + assetId, " " + assetRate + " USD");
     }
   });
@@ -97,14 +97,14 @@ $(document).ready(function (window) {
   })
 
   function passCheck(pass) {
-    // Must use a capital letter 
+    // Must use a capital letter
     var lowercase = pass.toLowerCase()
     if (lowercase === pass) {
       return false
     } else {
       return true
     }
-    // idk something for numbers or symbols 
+    // idk something for numbers or symbols
   }
   // Checks to see if the submitted email is in our records
   function emailCheck() {}
