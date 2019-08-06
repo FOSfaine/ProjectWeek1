@@ -28,6 +28,7 @@
 <body>
   <nav>
     CRYPTO KNIGHT
+
     <div>
       <a>Sign Up</a>
       <form action="submit">
@@ -41,18 +42,12 @@
       <form action="submit">
         Email: <input type="text" id="loginEmail" placeholder="CryptoKnight@email.com" />
         Pass: <input type="password" id="loginPass" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
+
         <input type="submit" name="submit" id="submitLogin" value="Log In">
       </form>
+      <a id="xpw" hidden>Incorrect Password</a>
     </div>
-    <div>
-      <a>Log In</a>
-      <form action="submit">
-        Email: <input type="text" id="loginEmail" placeholder="CryptoKnight@email.com" />
-        Pass: <input type="password" id="loginPass" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
-        <input type="submit" name="submit" id="submitLogin">
-      </form>
-    </div>
-    </div>
+
     <button type="button" id="logOut"> LOG OUT</button>
   </nav>
 
@@ -72,6 +67,7 @@
   </script>
   <script src="assets/javascript/mainpage.js"></script>
   <script src="assets/javascript/app.js"></script>
+  <script src="assets/javascript/auth.js"></script>
 </body>
 
 </html>
