@@ -1,15 +1,20 @@
 html,
 body {
     height: 100%;
-
 }
 
 body {
     font-size: 24px;
     background-color: rgb(46, 46, 46);
     color: white;
+}
 
-
+nav{
+    padding: 12px 12px 10px 12px;
+    color:black;
+    margin-bottom:20px;
+    border-bottom:1px solid gray;
+    background-color:whitesmoke;
 }
 
 .container-style {
@@ -32,6 +37,7 @@ body {
     grid-column: 2/3;
     grid-row: 1;
     margin-right:10px;
+    margin-bottom:50px;
 }
 
 .side-content {
@@ -39,13 +45,13 @@ body {
     grid-column: 1/2;
     grid-row: 1;
     margin-left:10px;
+    margin-bottom:50px;
 }
 
 
 .bottom-content {
     text-align: center;
     color: white;
-
     display: grid;
     grid-template-columns: 25% 75%;
     position: fixed;
@@ -66,7 +72,6 @@ body {
 .news_link{
     padding-top:10px;
     padding-bottom:10px;
-    border-bottom:1px solid gray;
     border-top:1px solid gray;
     text-align:left;
     margin-left:1%;
