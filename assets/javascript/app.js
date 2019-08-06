@@ -175,7 +175,7 @@ $(document).ready(function (window) {
             $("<a>")
             .attr("href", "web_url")
             .text(tempHeadliner)
-          )
+          ).attr("class","news_link")
         );
       }
     });

@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+
 }
 
 body {
@@ -8,18 +9,18 @@ body {
     background-color: rgb(46, 46, 46);
     color: white;
 
+
 }
 
 .container-style {
     display: grid;
     grid-template-columns: 25% 75%;
-    grid-template-rows: 100px 100px;
+    grid-template-rows: auto auto;
 }
 
 .log-out,
 .user-content,
 .side-content,
-.bottom-content,
 .main-content {
     background-color: rgb(65, 65, 65);
     text-align: center;
@@ -30,15 +31,21 @@ body {
 .main-content {
     grid-column: 2/3;
     grid-row: 1;
+    margin-right:10px;
 }
 
 .side-content {
+    font-size:18px;
     grid-column: 1/2;
     grid-row: 1;
+    margin-left:10px;
 }
 
 
 .bottom-content {
+    text-align: center;
+    color: white;
+
     display: grid;
     grid-template-columns: 25% 75%;
     position: fixed;
@@ -48,8 +55,20 @@ body {
 
 .log-out {
     grid-column: 1/2;
+    margin-left:10px;
 }
 
 .user-content {
     grid-column: 2/3;
+    margin-right:10px;
+}
+
+.news_link{
+    padding-top:10px;
+    padding-bottom:10px;
+    border-bottom:1px solid gray;
+    border-top:1px solid gray;
+    text-align:left;
+    margin-left:1%;
+    margin-right:1%;
 }
