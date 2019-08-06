@@ -36,7 +36,7 @@ $(document).ready(function (window) {
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
       $("#currencies").append($("<option>").val(assetId));
-      console.log("Coin: " + assetId, " " + assetRate + " USD");
+      // console.log("Coin: " + assetId, " " + assetRate + " USD");
     }
   });
 
@@ -56,7 +56,7 @@ $(document).ready(function (window) {
       "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
     }
   }).then(function (response) {
-    console.log("currency converted: " + response);
+    // console.log("currency converted: " + response);
   });
 
 
@@ -76,6 +76,7 @@ $(document).ready(function (window) {
       });
       $("#emailNew").text("")
       $("#passNew").text("")
+      window.location.href = "../user-index.html"
 
     } else {
       console.log("Invaild Password")
@@ -116,7 +117,8 @@ $(document).ready(function (window) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
-      //   // ...
+      window.location.href = "../user-index.html"
+      console.log("wrong path")
     });
 
   })
@@ -164,12 +166,12 @@ $(document).ready(function (window) {
       url: queryURL,
       method: "GET"
     }).then(function (NYTData) {
-      console.log(NYTData);
+      // console.log(NYTData);
       $("#news-view").text(JSON.stringify(NYTData));
       for (var i = 0; i < 10; i++) {
         var tempHeadliner = NYTData.response.docs[i].headline.main;
         var tempLink = NYTData.response.docs[i].web_url;
-        console.log(NYTData.response.docs[i].headline.main);
+        // console.log(NYTData.response.docs[i].headline.main);
         $(".side-content").append(
           $("<div>").append(
             $("<a>")
