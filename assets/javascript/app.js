@@ -13,7 +13,7 @@ $(document).ready(function (window) {
 
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+  const db = firebase.database();
   const auth = firebase.auth()
 
   // ***CoinAPI***
@@ -175,7 +175,7 @@ $(document).ready(function (window) {
             $("<a>")
             .attr("href", "web_url")
             .text(tempHeadliner)
-          ).attr("class","news_link")
+          ).attr("class", "news_link")
         );
       }
     });
