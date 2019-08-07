@@ -2,6 +2,7 @@ $(document).ready(() => {
     // Firebase Auth
     console.log('ready')
     $("#submitNew").on('click', () => {
+        event.preventDefault();
         var userEmail = $("#emailNew").val().trim()
         var userPass = $("#passNew").val().trim()
 
