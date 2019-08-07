@@ -1,4 +1,4 @@
-$(document).ready(function (window) {
+$(document).ready(function(window) {
   console.log("document ready");
 
   var firebaseConfig = {
@@ -14,7 +14,7 @@ $(document).ready(function (window) {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
-  const auth = firebase.auth()
+  const auth = firebase.auth();
 
   // ***CoinAPI***
   //This api call pulls assets (in asset_id by symbol) requested and pairs with asset_id_base (in USD):
@@ -27,12 +27,10 @@ $(document).ready(function (window) {
       "x-rapidapi-host": "coinapi.p.rapidapi.com",
       "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
     }
-  }).then(function (response) {
-
+  }).then(function(response) {
     var ratesArray = response.rates;
 
     for (var j = 0; j < 99; j++) {
-
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
       $("#currencies").append($("<option>").val(assetId));
@@ -40,13 +38,18 @@ $(document).ready(function (window) {
     }
   });
 
-
   // ***Currency Exchange API code***
   var amount = "1.0";
   var currency1 = "USD";
   var currency2 = "GBP";
 
-  var queryURL = 'https://currency-exchange.p.rapidapi.com/exchange?q=' + amount + '&from=' + currency1 + '&to=' + currency2;
+  var queryURL =
+    "https://currency-exchange.p.rapidapi.com/exchange?q=" +
+    amount +
+    "&from=" +
+    currency1 +
+    "&to=" +
+    currency2;
 
   $.ajax({
     url: queryURL,
@@ -55,12 +58,9 @@ $(document).ready(function (window) {
       "x-rapidapi-host": "currency-exchange.p.rapidapi.com",
       "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
     }
-  }).then(function (response) {
+  }).then(function(response) {
     // console.log("currency converted: " + response);
   });
-
-
-
 
   //NYT API code
   function populateNews() {
@@ -71,7 +71,7 @@ $(document).ready(function (window) {
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function (NYTData) {
+    }).then(function(NYTData) {
       // console.log(NYTData);
       $("#news-view").text(JSON.stringify(NYTData));
       for (var i = 0; i < 10; i++) {
@@ -79,15 +79,16 @@ $(document).ready(function (window) {
         var tempLink = NYTData.response.docs[i].web_url;
         // console.log(NYTData.response.docs[i].headline.main);
         $(".side-content").append(
-          $("<div>").append(
-            $("<a>")
-            .attr("href", "web_url")
-            .text(tempHeadliner)
-          ).attr("class", "news_link")
+          $("<div>")
+            .append(
+              $("<a>")
+                .attr("href", tempLink)
+                .text(tempHeadliner)
+            )
+            .attr("class", "news_link")
         );
       }
     });
   }
   populateNews();
-
 });
