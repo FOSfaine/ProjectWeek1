@@ -16,7 +16,7 @@ $(document).ready(function (window) {
   const db = firebase.database();
   const auth = firebase.auth()
 
-  // ***CoinAPI***
+  // ***CoinAPI call 1***
   //This api call pulls assets (in asset_id by symbol) requested and pairs with asset_id_base (in USD):
   var queryURL = "https://coinapi.p.rapidapi.com/v1/exchangerate/USD";
 
@@ -35,13 +35,13 @@ $(document).ready(function (window) {
 
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
-      // $("#currencies").append($("<option>").val(assetId));
+
       // console.log("Coin: " + assetId, " " + assetRate + " USD");
     }
   });
 
-  // ***CoinAPI***
-  //This api call pulls assets by name and matches them with their asset-id
+  // ***CoinAPI call 2***
+  //This api call pulls assets by name and matches them with their asset-id. ONLY for search bar.
   var nameQueryURL = "https://coinapi.p.rapidapi.com/v1/assets";
 
   $.ajax({
