@@ -74,8 +74,9 @@ $(document).ready(function (window) {
       $("#currencies").append($("<option>").val(assetInfo));
       console.log("Coin name: " + assetName, ": " + assetId);
     }
-  });
-
+  }).then(function (response) {
+     console.log("currency converted: " + response);
+    });
 
   // ***Currency Exchange API code***
   var amount = "1.0";
