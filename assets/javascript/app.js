@@ -17,13 +17,13 @@ $(document).ready(function (window) {
   const auth = firebase.auth()
 
 
-  function createButtons(array){
+  function createButtons(array) {
     console.log("function called");
-    for(var i = 0;i < 5; i++){
-      $(".user-content").append($("<button>").attr("class","crypto_buttons").attr("id",array[i].asset_id_quote).text(array[i].asset_id_quote))
+    for (var i = 0; i < 5; i++) {
+      $(".user-content").append($("<button>").attr("class", "crypto_buttons").attr("id", array[i].asset_id_quote).text(array[i].asset_id_quote))
     }
-    $(".crypto_buttons").on("click",function(event){
-      buttonID = event.target.id;
+    $(".crypto_buttons").on("click", function (event) {
+      buttonID = event.target.id
       console.log("You Clicked: " + buttonID)
     })
   }
@@ -47,7 +47,7 @@ $(document).ready(function (window) {
 
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
-      
+
       // console.log("Coin: " + assetId, " " + assetRate + " USD");
     }
     createButtons(ratesArray);
@@ -82,6 +82,13 @@ $(document).ready(function (window) {
   $("#searchGo").on('click', () => {
     console.log("go")
     let choice = $("#searchInput").val()
+    let search = ""
+    let rate = ""
+    for (i = 3; i > 0; i--) {
+      search = search.concat((choice[choice.length - i]))
+    }
+    search = search.trim()
+    console.log(search)
     $.ajax({
       url: nameQueryURL,
       method: "GET",
@@ -90,9 +97,19 @@ $(document).ready(function (window) {
         "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
       }
     }).then(function (response) {
+      var ratesArray = response.rates;
+
+      for (var j = 0; j < 199; j++) {
+
+        var assetId = ratesArray[j].asset_id_quote;
+        var assetRate = ratesArray[j].rate;
+        if (assetId === search) {
+          rate = assetRate
+        }
+      }
 
     });
-
+    console.log(rate)
   })
   // ***Currency Exchange API code***
   var amount = "1.0";
