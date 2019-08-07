@@ -35,8 +35,31 @@ $(document).ready(function (window) {
 
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
-      $("#currencies").append($("<option>").val(assetId));
+      // $("#currencies").append($("<option>").val(assetId));
       // console.log("Coin: " + assetId, " " + assetRate + " USD");
+    }
+  });
+
+  // ***CoinAPI***
+  //This api call pulls assets by name and matches them with their asset-id
+  var nameQueryURL = "https://coinapi.p.rapidapi.com/v1/assets";
+
+  $.ajax({
+    url: nameQueryURL,
+    method: "GET",
+    headers: {
+      "x-rapidapi-host": "coinapi.p.rapidapi.com",
+      "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
+    }
+  }).then(function (response) {
+
+    for (var i = 0; i < 199; i++) {
+
+      var assetId = response[i].asset_id;
+      var assetName = response[i].name;
+      var assetInfo = assetName + ": " + assetId;
+      $("#currencies").append($("<option>").val(assetInfo));
+      console.log("Coin name: " + assetName, ": " + assetId);
     }
   });
 
