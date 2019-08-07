@@ -47,8 +47,6 @@ $(document).ready(function (window) {
 
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
-
-      // console.log("Coin: " + assetId, " " + assetRate + " USD");
     }
     createButtons(ratesArray);
   });
@@ -107,10 +105,10 @@ $(document).ready(function (window) {
           rate = assetRate
         }
       }
-
+  }).then(function (response) {
+     console.log("currency converted: " + response);
     });
-    console.log(rate)
-  })
+
   // ***Currency Exchange API code***
   var amount = "1.0";
   var currency1 = "USD";
