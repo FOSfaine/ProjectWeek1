@@ -31,7 +31,7 @@ $(document).ready(function (window) {
 
     var ratesArray = response.rates;
 
-    for (var j = 0; j < 99; j++) {
+    for (var j = 0; j < 199; j++) {
 
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
