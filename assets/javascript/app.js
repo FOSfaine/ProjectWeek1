@@ -104,7 +104,7 @@ $(document).ready(function (window) {
         $(".side-content").append(
           $("<div>").append(
             $("<a>")
-            .attr("href", "web_url")
+            .attr("href", tempLink)
             .text(tempHeadliner)
           ).attr("class", "news_link")
         );
