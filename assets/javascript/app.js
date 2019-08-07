@@ -113,4 +113,21 @@ $(document).ready(function (window) {
   }
   populateNews();
 
+
+  $("#eUserClick").on('click', () => {
+    $("#signUp").hide()
+    $("#eUserSignIn").show()
+    $("#eUserClick").hide()
+    $("#newUserClick").show()
+  })
+  $("#eUserSignIn").hide()
+  $("#newUserClick").hide()
+
+  $("#newUserClick").on('click', () => {
+    $("#signUp").show()
+    $("#eUserSignIn").hide()
+    $("#eUserClick").show()
+    $("#newUserClick").hide()
+
+  })
 });

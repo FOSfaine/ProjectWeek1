@@ -56,3 +56,19 @@ body {
 #xpw {
     color: red;
 }
+
+#eUserClick {
+    color: blue;
+    text-decoration: underline;
+}
+
+#newUserClick {
+    color: blue;
+    text-decoration: underline;
+}
+
+.bigger {
+    font-size: x-large;
+    font-weight: bold;
+
+}

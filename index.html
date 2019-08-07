@@ -30,26 +30,29 @@
     CRYPTO KNIGHT
 
     <div>
-      <a>Sign Up</a>
-      <form action="submit">
-        Email: <input type="text" id="emailNew" placeholder="CryptoKnight@email.com" />
-        Pass: <input type="password" id="passNew" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
-        <input type="submit" value="Sign Up" name="submit" id="submitNew">
-      </form>
-    </div>
-    <div>
-      <a>Log In</a>
-      <form action="submit">
-        Email: <input type="text" id="loginEmail" placeholder="CryptoKnight@email.com" />
-        Pass: <input type="password" id="loginPass" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
+      <div id="signUp">
+        <a class="bigger">Sign Up</a>
+        <form action="submit">
+          Email: <input type="text" id="emailNew" placeholder="CryptoKnight@email.com" />
+          Pass: <input type="password" id="passNew" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
+          <input type="submit" value="Sign Up" name="submit" id="submitNew">
+        </form>
+      </div>
+      <a id="eUserClick"> I'm An Existing User!</a>
+      <a id="newUserClick">I'm a New User!</a>
+      <div id="eUserSignIn">
+        <a class="bigger">Log In</a>
+        <form action="submit">
+          Email: <input type="text" id="loginEmail" placeholder="CryptoKnight@email.com" />
+          Pass: <input type="password" id="loginPass" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
 
-        <input type="submit" name="submit" id="submitLogin" value="Log In">
-      </form>
+          <input type="submit" name="submit" id="submitLogin" value="Log In">
+        </form>
+      </div>
       <a id="xpw" hidden>Incorrect Password</a>
-    </div>
 
-    <button type="button" id="logOut"> LOG OUT</button>
   </nav>
+  <br>
 
   <div class=" container-style">
     <div class="main-content">Main Content Section</div>
