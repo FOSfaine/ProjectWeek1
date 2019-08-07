@@ -16,6 +16,18 @@ $(document).ready(function (window) {
   const db = firebase.database();
   const auth = firebase.auth()
 
+
+  function createButtons(array){
+    console.log("function called");
+    for(var i = 0;i < 5; i++){
+      $(".user-content").append($("<button>").attr("class","crypto_buttons").attr("id",array[i].asset_id_quote).text(array[i].asset_id_quote))
+    }
+    $(".crypto_buttons").on("click",function(event){
+      buttonID = event.target.id;
+      console.log("You Clicked: " + buttonID)
+    })
+  }
+
   // ***CoinAPI call 1***
   //This api call pulls assets (in asset_id by symbol) requested and pairs with asset_id_base (in USD):
   var queryURL = "https://coinapi.p.rapidapi.com/v1/exchangerate/USD";
@@ -35,9 +47,10 @@ $(document).ready(function (window) {
 
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
-
+      
       // console.log("Coin: " + assetId, " " + assetRate + " USD");
     }
+    createButtons(ratesArray);
   });
 
   // ***CoinAPI call 2***
