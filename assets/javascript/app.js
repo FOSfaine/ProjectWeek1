@@ -36,7 +36,7 @@ $(document).ready(function (window) {
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
 
-      // console.log("Coin: " + assetId, " " + assetRate + " USD");
+      console.log("Coin: " + assetId, " " + assetRate + " USD");
     }
   });
 
@@ -59,7 +59,7 @@ $(document).ready(function (window) {
       var assetName = response[i].name;
       var assetInfo = assetName + ": " + assetId;
       $("#currencies").append($("<option>").val(assetInfo));
-      console.log("Coin name: " + assetName, ": " + assetId);
+      // console.log("Coin name: " + assetName, ": " + assetId);
     }
   });
 
