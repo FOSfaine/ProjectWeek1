@@ -29,30 +29,38 @@
   <nav>
     CRYPTO KNIGHT
 
-    <div>
-      <a>Sign Up</a>
-      <form action="submit">
-        Email: <input type="text" id="emailNew" placeholder="CryptoKnight@email.com" />
-        Pass: <input type="password" id="passNew" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
-        <input type="submit" value="Sign Up" name="submit" id="submitNew">
-      </form>
-    </div>
-    <div>
-      <a>Log In</a>
-      <form action="submit">
-        Email: <input type="text" id="loginEmail" placeholder="CryptoKnight@email.com" />
-        Pass: <input type="password" id="loginPass" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
+    <p><a href="javascript:login('show');">login</a></p>
+    <p><a href="javascript:signUp('show');">sign-up</a></p>
 
+    <div id="loginbox">
+      <a>Log In</a>
+      <form name="login" action="submit">
+        <input type="text" id="loginEmail" placeholder="CryptoKnight@email.com" />
+        <input type="password" id="loginPass" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
         <input type="submit" name="submit" id="submitLogin" value="Log In">
       </form>
-      <a id="xpw" hidden>Incorrect Password</a>
+      <center><a href="javascript:login('hide');">close</a></center>
+    </div>
+
+    <div id="signupbox">
+      <a>Sign Up</a>
+      <form name="sign-up" action="submit">
+        <input type="text" id="emailNew" placeholder="CryptoKnight@email.com" />
+        <br>
+        <input type="password" id="passNew" placeholder="password" pattern="[0-9a-fA-F]{4,8}">
+        <br>
+        <input type="submit" value="Sign Up" name="submit" id="submitNew">
+      </form>
+      <center><a href="javascript:signUp('hide');">close</a></center>
     </div>
 
     <button type="button" id="logOut"> LOG OUT</button>
   </nav>
 
   <div class=" container-style">
-    <div class="main-content">Main Content Section</div>
+    <div class="main-content">Main Content Section
+
+    </div>
     <div class="side-content">Sidebar Section</div>
   </div>
   <!-- Optional JavaScript -->
@@ -65,8 +73,44 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
   </script>
-  <script src="assets/javascript/app.js"></script>
+  <!-- <script src="assets/javascript/app.js"></script> -->
   <script src="assets/javascript/auth.js"></script>
+
+  <style type="text/css">
+    #loginbox,
+    #signupbox {
+      margin: 0;
+      margin-left: 25%;
+      margin-right: 25%;
+      margin-top: 50px;
+      padding-top: 10px;
+      width: 50%;
+      height: 150px;
+      position: absolute;
+      background: #FBFBF0;
+      border: solid #000000 2px;
+      z-index: 9;
+      font-family: arial;
+      visibility: hidden;
+    }
+  </style>
+  <script language="JavaScript" type="text/javascript">
+    function login(showhide) {
+      if (showhide == "show") {
+        document.getElementById('loginbox').style.visibility = "visible";
+      } else if (showhide == "hide") {
+        document.getElementById('loginbox').style.visibility = "hidden";
+      }
+    };
+
+    function signUp(showhide) {
+      if (showhide == "show") {
+        document.getElementById('signupbox').style.visibility = "visible";
+      } else if (showhide == "hide") {
+        document.getElementById('signupbox').style.visibility = "hidden";
+      }
+    }
+  </script>
 </body>
 
 </html>
