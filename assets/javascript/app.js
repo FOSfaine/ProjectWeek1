@@ -56,7 +56,7 @@ $(document).ready(function (window) {
   // ***CoinAPI call 2***
   //This api call pulls assets by name and matches them with their asset-id. ONLY for search bar.
   var nameQueryURL = "https://coinapi.p.rapidapi.com/v1/assets";
-
+  var coinName = ""
   $.ajax({
     url: nameQueryURL,
     method: "GET",
@@ -72,11 +72,28 @@ $(document).ready(function (window) {
       var assetName = response[i].name;
       var assetInfo = assetName + ": " + assetId;
       $("#currencies").append($("<option>").val(assetInfo));
-      console.log("Coin name: " + assetName, ": " + assetId);
+      // console.log("Coin name: " + assetName, ": " + assetId);
     }
+
+
+
   });
 
+  $("#searchGo").on('click', () => {
+    console.log("go")
+    let choice = $("#searchInput").val()
+    $.ajax({
+      url: nameQueryURL,
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "coinapi.p.rapidapi.com",
+        "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
+      }
+    }).then(function (response) {
 
+    });
+
+  })
   // ***Currency Exchange API code***
   var amount = "1.0";
   var currency1 = "USD";
