@@ -105,9 +105,10 @@ $(document).ready(function (window) {
           rate = assetRate
         }
       }
-  }).then(function (response) {
-     console.log("currency converted: " + response);
+    }).then(function (response) {
+      console.log("currency converted: " + response);
     });
+  });
 
   // ***Currency Exchange API code***
   var amount = "1.0";
