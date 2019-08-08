@@ -84,38 +84,61 @@ $(document).ready(function (window) {
   $("#searchGo").on('click', () => {
     event.preventDefault();
     // data pull
+    $("#clear").show()
     let choice = $("#searchInput").val()
     let search = ""
-    let rate = ""
+    let rateUSD = ""
     for (i = 3; i > 0; i--) {
       search = search.concat((choice[choice.length - i]))
     }
     search = search.trim()
     console.log(search)
-    rate = allRates[search]
-    rate = (1 / rate)
-    rate = rate.toFixed(2)
+    rateUSD = allRates[search]
+    rateUSD = (1 / rateUSD)
+    rateUSD = rateUSD.toFixed(2)
     // card generation 
-    cardCreation(choice, rate)
+    cardCreation(choice, rateUSD)
+    $("#searchInput").val("")
   })
   var cardCount = 0
 
+  $("#clear").on('click', () => {
+    console.log('clear')
+    clearSearch()
+    $("#clear").hide()
+  })
 
-
-  function cardCreation(choice, rate) {
+  async function cardCreation(choice, rate) {
     cardCount++
+
     var newCard = $("<div></div>")
     newCard.attr("class", "card")
     newCard.attr("id", "card-" + cardCount)
 
     var newBody = $("<div></div>")
     var newButton = $("<button></button>")
+    var newTextEU = $("<p></p>")
+    var newTextCAD = $("<p></p>")
+
+    var money1 = await getMula("USD", "EUR")
+    var money2 = await getMula("USD", "CAD")
+
+    money1 *= rate
+    money2 *= rate
+    money1 = money1.toFixed(2)
+    money2 = money2.toFixed(2)
+
+
+    newTextEU.text(money1 + " EUR")
+    newTextCAD.text(money2 + " CAD")
     newButton.text("X")
     newButton.attr("class", "quit")
     newButton.attr("id", cardCount)
 
     newBody.attr("class", "card-body")
     newBody.text(choice + " is worth " + rate + " USD")
+    newBody.append(newTextEU)
+    newBody.append(newTextCAD)
 
     newCard.append(newBody)
     newCard.append(newButton)
@@ -135,11 +158,31 @@ $(document).ready(function (window) {
     card.remove()
   }
 
+  function clearSearch() {
+    $(".card-holder").empty()
+  }
 
   // ***Currency Exchange API code***
-  var amount = "1.0";
+  function getMula(currencyA, currencyB) {
+    var amount = 1;
+    var currency1 = currencyA;
+    var currency2 = currencyB;
+
+    var queryURL = 'https://currency-exchange.p.rapidapi.com/exchange?q=' + amount + '&from=' + currency1 + '&to=' + currency2;
+    return $.ajax({
+      url: queryURL,
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "currency-exchange.p.rapidapi.com",
+        "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
+      }
+    })
+  }
+
+
+  var amount = 1;
   var currency1 = "USD";
-  var currency2 = "GBP";
+  var currency2 = "EUR";
 
   var queryURL = 'https://currency-exchange.p.rapidapi.com/exchange?q=' + amount + '&from=' + currency1 + '&to=' + currency2;
 
@@ -151,9 +194,8 @@ $(document).ready(function (window) {
       "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
     }
   }).then(function (response) {
-    // console.log("currency converted: " + response);
+    console.log(response)
   });
-
 
 
 
@@ -195,7 +237,7 @@ $(document).ready(function (window) {
   })
   $("#eUserSignIn").hide()
   $("#newUserClick").hide()
-
+  $("#clear").hide()
   $("#newUserClick").on('click', () => {
     $("#signUp").show()
     $("#eUserSignIn").hide()

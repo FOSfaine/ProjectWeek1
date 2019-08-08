@@ -3,6 +3,7 @@ body {
     height: auto;
     padding-top:20vh;
 }
+
 body {
     background-color: rgb(20, 20, 20);
     font-size: 18px;
@@ -29,7 +30,6 @@ body {
     color: white;
     border: 1px solid black;
     display:none;
-
 }
 
 .main-content {
@@ -104,6 +104,7 @@ nav{
     color:white;
     font-size:50px;
 }
+
 #title-style:hover{
     text-decoration:none;
 }
