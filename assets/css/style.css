@@ -7,14 +7,18 @@ body {
     font-size: 24px;
     background-color: rgb(46, 46, 46);
     color: white;
+    background-image: url("../images/background2.jpg");
+    background-position:center;
+    background-size:auto;
 }
 
 nav {
     padding: 12px 12px 10px 12px;
-    color: black;
+    color: white;
     margin-bottom: 20px;
     border-bottom: 1px solid gray;
-    background-color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.376);
+    text-align:center;
 }
 
 .container-style {
@@ -27,7 +31,7 @@ nav {
 .user-content,
 .side-content,
 .main-content {
-    background-color: rgb(65, 65, 65);
+    background-color: rgba(0, 0, 0, 0.726);
     text-align: center;
     color: white;
     border: 1px solid black;
@@ -46,6 +50,9 @@ nav {
     grid-row: 1;
     margin-left: 10px;
     margin-bottom: 50px;
+    padding-top:8px;
+    background-color:rgba(49, 49, 49, 0.63);
+    color:black;
 }
 
 
@@ -69,6 +76,12 @@ nav {
     margin-right: 10px;
 }
 
+.log-out,
+.user-content{
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
 .news_link {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -76,8 +89,60 @@ nav {
     text-align: left;
     margin-left: 1%;
     margin-right: 1%;
+    color:black;
 }
 
 .card-body {
-    color: black;
+    color: white;
+}
+
+.card-holder{
+    width:auto;
+    margin-left:10px;
+    margin-top:10px;
+}
+
+.card{
+    float:left;
+    width:300px;
+    margin-right:10px;
+    background-color:rgba(0, 0, 0, 0.548)
+}
+
+button{
+    border:1px solid white;
+    padding-top:5px;
+    border:1px solid orange;
+    background-color:rgb(59, 59, 59);
+    color:white;
+}
+a{
+    color:white;
+}
+#searchInput{
+    background-color:rgb(59, 59, 59);
+    border:1px solid orange;
+    color:white;
+    height:33px;
+    margin-bottom:5px;
+    border-radius:7px;
+}
+
+#searchGo{
+    border-radius:5px;
+
+}
+.log-out{
+    background-color:rgba(190, 0, 0, 0.712);
+    padding-top:10px;
+}
+
+#newsTitle{
+    font-size:24px;
+    color:white;
+}
+
+.search-Container{
+    height:auto;
+    margin-top:10px;
 }
