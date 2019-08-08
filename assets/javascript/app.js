@@ -31,7 +31,7 @@ $(document).ready(function (window) {
   // ***CoinAPI call 1***
   //This api call pulls assets (in asset_id by symbol) requested and pairs with asset_id_base (in USD):
   var queryURL = "https://coinapi.p.rapidapi.com/v1/exchangerate/USD";
-
+  var allRates = {}
   $.ajax({
     url: queryURL,
     method: "GET",
@@ -47,7 +47,9 @@ $(document).ready(function (window) {
 
       var assetId = ratesArray[j].asset_id_quote;
       var assetRate = ratesArray[j].rate;
+      allRates[assetId] = assetRate
     }
+
     createButtons(ratesArray);
   });
 
@@ -55,7 +57,7 @@ $(document).ready(function (window) {
   //This api call pulls assets by name and matches them with their asset-id. ONLY for search bar.
   var nameQueryURL = "https://coinapi.p.rapidapi.com/v1/assets";
   var coinName = ""
-  var allRates = []
+
   $.ajax({
     url: nameQueryURL,
     method: "GET",
@@ -70,10 +72,7 @@ $(document).ready(function (window) {
       var assetId = response[i].asset_id;
       var assetName = response[i].name;
       var assetInfo = assetName + ": " + assetId;
-      allRates.push({
-        name: assetName,
-        id: assetId
-      })
+
       $("#currencies").append($("<option>").val(assetInfo));
       // console.log("Coin name: " + assetName, ": " + assetId);
 
@@ -83,7 +82,8 @@ $(document).ready(function (window) {
 
 
   $("#searchGo").on('click', () => {
-    console.log("go")
+    event.preventDefault();
+    // data pull
     let choice = $("#searchInput").val()
     let search = ""
     let rate = ""
@@ -92,16 +92,49 @@ $(document).ready(function (window) {
     }
     search = search.trim()
     console.log(search)
-
-    for (var j = 0; j < 199; j++) {
-
-      var assetId = ratesArray[j].asset_id_quote;
-      var assetRate = ratesArray[j].rate;
-      if (assetId === search) {
-        rate = assetRate
-      }
-    }
+    rate = allRates[search]
+    rate = (1 / rate)
+    rate = rate.toFixed(2)
+    // card generation 
+    cardCreation(choice, rate)
   })
+  var cardCount = 0
+
+
+
+  function cardCreation(choice, rate) {
+    cardCount++
+    var newCard = $("<div></div>")
+    newCard.attr("class", "card")
+    newCard.attr("id", "card-" + cardCount)
+
+    var newBody = $("<div></div>")
+    var newButton = $("<button></button>")
+    newButton.text("X")
+    newButton.attr("class", "quit")
+    newButton.attr("id", cardCount)
+
+    newBody.attr("class", "card-body")
+    newBody.text(choice + " is worth " + rate + " USD")
+
+    newCard.append(newBody)
+    newCard.append(newButton)
+
+    $(".card-holder").prepend(newCard)
+    $(".quit").on("click", (evt) => {
+      var id = evt.target.id
+      clearCard(id)
+    })
+
+  }
+
+
+  function clearCard(cardNum) {
+
+    var card = $("#card-" + cardNum)
+    card.remove()
+  }
+
 
   // ***Currency Exchange API code***
   var amount = "1.0";
