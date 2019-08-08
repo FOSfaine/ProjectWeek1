@@ -13,16 +13,11 @@ $(document).ready(() => {
 
         // Passwork check and make sure the email is not already in our system
         firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).then(cred => {
-            return db.collection('users').doc(cred.user.uid).set({
-                watchList: ""
 
-            })
-
-        }).then(() => {
             console.log(cred.user)
             $("#emailNew").val("")
             $("#passNew").val("")
-        });
+        })
 
 
         // if (user) {
@@ -41,12 +36,6 @@ $(document).ready(() => {
         // }
     })
 
-    function writeUserData(userId, name, email) {
-        firebase.database().ref('users/' + userId).set({
-            username: name,
-            email: email,
-        });
-    }
 
 
     function passCheck(pass) {
