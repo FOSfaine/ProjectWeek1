@@ -79,7 +79,7 @@ $(document).ready(function (window) {
 
     }
   });
-  console.log(allRates[5].id)
+
 
 
   $("#searchGo").on('click', () => {
@@ -101,9 +101,7 @@ $(document).ready(function (window) {
         rate = assetRate
       }
     }
-  }).then(function (response) {
-    console.log("currency converted: " + response);
-  });
+  })
 
   // ***Currency Exchange API code***
   var amount = "1.0";
