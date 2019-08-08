@@ -7,20 +7,13 @@ $(document).ready(() => {
         var userPass = $("#passNew").val().trim()
 
         // Passwork check and make sure the email is not already in our system
-        if (passCheck(userPass)) {
-            firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-
-            });
-            $("#emailNew").text("")
-            $("#passNew").text("")
+        firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).then(cred => {
+            console.log(cred.user)
+            $("#emailNew").val("")
+            $("#passNew").val("")
+        });
 
 
-        } else {
-            console.log("Invaild Password")
-        }
         // if (user) {
         //   user.updateEmail(userEmail).then(function () {
         //     // Update successful.
@@ -36,6 +29,8 @@ $(document).ready(() => {
         //   console.log("creation success")
         // }
     })
+
+
 
     function passCheck(pass) {
         // Must use a capital letter
@@ -70,7 +65,14 @@ $(document).ready(() => {
             // An error happened.
         });
     })
-
+    $("#log-out2").on('click', () => {
+        firebase.auth().signOut().then(function () {
+            // Sign-out successful.
+            console.log("signing OUT")
+        }).catch(function (error) {
+            // An error happened.
+        });
+    })
     var user = firebase.auth().currentUser;
     var name, email, photoUrl, uid, emailVerified;
 
@@ -87,14 +89,14 @@ $(document).ready(() => {
             userEmail = user.email;
             userPhoto = user.photoURL;
             userEmailVerified = user.emailVerified;
-            if (window.location != "https://estherecho.github.io/ProjectWeek1/user-index.html")
+            //     if (window.location != "https://estherecho.github.io/ProjectWeek1/user-index.html")
 
-                window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html")
-        } else {
-            console.log("no user sign-in")
-            if (window.location != "https://estherecho.github.io/ProjectWeek1/index.html")
-                // window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html");
-                window.location.replace("https://estherecho.github.io/ProjectWeek1/index.html")
+            //         window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html")
+            // } else {
+            //     console.log("no user sign-in")
+            //     if (window.location != "https://estherecho.github.io/ProjectWeek1/index.html")
+            //         // window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html");
+            //         window.location.replace("https://estherecho.github.io/ProjectWeek1/index.html")
 
         }
     });
