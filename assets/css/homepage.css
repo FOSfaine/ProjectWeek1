@@ -1,20 +1,22 @@
 html,
 body {
-    height: 100%;
-    margin-left:10px;
-    margin-right:10px;
+    height: auto;
+    padding-top:20vh;
 }
 
 body {
     background-color: rgb(20, 20, 20);
     font-size: 18px;
     color:white;
+    background-image:url("../images/background1.jpg");
+    background-position:center;
+    background-size:auto;
 }
 
 .container-style {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 80vh;
+    grid-template-rows: 15vh;
 }
 
 
@@ -27,7 +29,7 @@ body {
     text-align: center;
     color: white;
     border: 1px solid black;
-
+    display:none;
 }
 
 .main-content {
@@ -78,7 +80,11 @@ body {
 }
 
 nav{
-    height:auto;
+    height:150px;
+    background-color:rgba(0, 0, 0, 0.322);
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:15px;
 }
 
 #signUp,
@@ -98,7 +104,21 @@ nav{
     color:white;
     font-size:50px;
 }
+
+#title-style:hover{
+    text-decoration:none;
+}
 #title-div{
     float:left;
     padding-top:45px;
+}
+@media only screen and (max-width: 1150px) {
+    #signUp,
+    #eUserClick,
+    #newUserClick,
+    #eUserSignIn,
+    #xpw{
+        text-align:left;
+        float:right;
+    }
 }
