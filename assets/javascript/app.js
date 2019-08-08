@@ -25,7 +25,12 @@ $(document).ready(function (window) {
     $(".crypto_buttons").on("click", function (event) {
       buttonID = event.target.id
       console.log("You Clicked: " + buttonID)
+      var ratez = allRates[buttonID]
+      ratez = (1 / ratez)
+      ratez = ratez.toFixed(2)
+      cardCreation(buttonID, ratez)
     })
+
   }
 
   // ***CoinAPI call 1***
@@ -78,8 +83,6 @@ $(document).ready(function (window) {
 
     }
   });
-
-
 
   $("#searchGo").on('click', () => {
     event.preventDefault();
@@ -179,23 +182,6 @@ $(document).ready(function (window) {
     })
   }
 
-
-  var amount = 1;
-  var currency1 = "USD";
-  var currency2 = "EUR";
-
-  var queryURL = 'https://currency-exchange.p.rapidapi.com/exchange?q=' + amount + '&from=' + currency1 + '&to=' + currency2;
-
-  $.ajax({
-    url: queryURL,
-    method: "GET",
-    headers: {
-      "x-rapidapi-host": "currency-exchange.p.rapidapi.com",
-      "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
-    }
-  }).then(function (response) {
-    console.log(response)
-  });
 
 
 
