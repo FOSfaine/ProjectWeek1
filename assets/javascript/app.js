@@ -108,72 +108,72 @@ $(document).ready(function (window) {
     }).then(function (response) {
       console.log("currency converted: " + response);
     });
-  });
 
-  // ***Currency Exchange API code***
-  var amount = "1.0";
-  var currency1 = "USD";
-  var currency2 = "GBP";
+    // ***Currency Exchange API code***
+    var amount = "1.0";
+    var currency1 = "USD";
+    var currency2 = "GBP";
 
-  var queryURL = 'https://currency-exchange.p.rapidapi.com/exchange?q=' + amount + '&from=' + currency1 + '&to=' + currency2;
-
-  $.ajax({
-    url: queryURL,
-    method: "GET",
-    headers: {
-      "x-rapidapi-host": "currency-exchange.p.rapidapi.com",
-      "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
-    }
-  }).then(function (response) {
-    // console.log("currency converted: " + response);
-  });
-
-
-
-
-  //NYT API code
-  function populateNews() {
-    var news = $(this).attr("data-name");
-    var queryURL =
-      "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=cryptocurrency&api-key=F86BqhNAvBubVGR0OjFhBa8R1QbGr3gD";
+    var queryURL = 'https://currency-exchange.p.rapidapi.com/exchange?q=' + amount + '&from=' + currency1 + '&to=' + currency2;
 
     $.ajax({
       url: queryURL,
-      method: "GET"
-    }).then(function (NYTData) {
-      // console.log(NYTData);
-      $("#news-view").text(JSON.stringify(NYTData));
-      for (var i = 0; i < 10; i++) {
-        var tempHeadliner = NYTData.response.docs[i].headline.main;
-        var tempLink = NYTData.response.docs[i].web_url;
-        // console.log(NYTData.response.docs[i].headline.main);
-        $(".side-content").append(
-          $("<div>").append(
-            $("<a>")
-            .attr("href", tempLink)
-            .text(tempHeadliner)
-          ).attr("class", "news_link")
-        );
+      method: "GET",
+      headers: {
+        "x-rapidapi-host": "currency-exchange.p.rapidapi.com",
+        "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
       }
+    }).then(function (response) {
+      // console.log("currency converted: " + response);
     });
-  }
-  populateNews();
 
 
-  $("#eUserClick").on('click', () => {
-    $("#signUp").hide()
-    $("#eUserSignIn").show()
-    $("#eUserClick").hide()
-    $("#newUserClick").show()
-  })
-  $("#eUserSignIn").hide()
-  $("#newUserClick").hide()
 
-  $("#newUserClick").on('click', () => {
-    $("#signUp").show()
+
+    //NYT API code
+    function populateNews() {
+      var news = $(this).attr("data-name");
+      var queryURL =
+        "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=cryptocurrency&api-key=F86BqhNAvBubVGR0OjFhBa8R1QbGr3gD";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (NYTData) {
+        // console.log(NYTData);
+        $("#news-view").text(JSON.stringify(NYTData));
+        for (var i = 0; i < 10; i++) {
+          var tempHeadliner = NYTData.response.docs[i].headline.main;
+          var tempLink = NYTData.response.docs[i].web_url;
+          // console.log(NYTData.response.docs[i].headline.main);
+          $(".side-content").append(
+            $("<div>").append(
+              $("<a>")
+              .attr("href", tempLink)
+              .text(tempHeadliner)
+            ).attr("class", "news_link")
+          );
+        }
+      });
+    }
+    populateNews();
+
+
+    $("#eUserClick").on('click', () => {
+      $("#signUp").hide()
+      $("#eUserSignIn").show()
+      $("#eUserClick").hide()
+      $("#newUserClick").show()
+    })
     $("#eUserSignIn").hide()
-    $("#eUserClick").show()
     $("#newUserClick").hide()
 
-  })
-});
+    $("#newUserClick").on('click', () => {
+      $("#signUp").show()
+      $("#eUserSignIn").hide()
+      $("#eUserClick").show()
+      $("#newUserClick").hide()
+
+    })
+  });
+})
