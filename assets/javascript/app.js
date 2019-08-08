@@ -1,5 +1,5 @@
 $(document).ready(function (window) {
-  console.log("document ready");
+
 
   var firebaseConfig = {
     apiKey: "AIzaSyCJF2Rjt64-Xubs-mipH-tF42L4_Vz9R0Y",
@@ -18,7 +18,7 @@ $(document).ready(function (window) {
 
 
   function createButtons(array) {
-    console.log("function called");
+
     for (var i = 0; i < 5; i++) {
       $(".user-content").append($("<button>").attr("class", "crypto_buttons").attr("id", array[i].asset_id_quote).text(array[i].asset_id_quote))
     }

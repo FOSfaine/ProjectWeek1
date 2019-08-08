@@ -71,14 +71,7 @@ $(document).ready(() => {
             // An error happened.
         });
     })
-    $("#log-out2").on('click', () => {
-        firebase.auth().signOut().then(function () {
-            // Sign-out successful.
-            console.log("signing OUT")
-        }).catch(function (error) {
-            // An error happened.
-        });
-    })
+
     var user = firebase.auth().currentUser;
     var name, email, photoUrl, uid, emailVerified;
 
