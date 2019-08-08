@@ -23,7 +23,7 @@ $(document).ready(function (window) {
       $(".user-content").append($("<button>").attr("class", "crypto_buttons").attr("id", array[i].asset_id_quote).text(array[i].asset_id_quote))
     }
     $(".crypto_buttons").on("click", function (event) {
-      buttonID = event.target.id
+      buttonID = search
       console.log("You Clicked: " + buttonID)
     })
   }
