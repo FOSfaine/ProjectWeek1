@@ -82,6 +82,8 @@ $(document).ready(function (window) {
 
 
   $("#searchGo").on('click', () => {
+    event.preventDefault();
+    // data pull
     let choice = $("#searchInput").val()
     let search = ""
     let rate = ""
@@ -91,8 +93,48 @@ $(document).ready(function (window) {
     search = search.trim()
     console.log(search)
     rate = allRates[search]
-
+    rate = (1 / rate)
+    rate = rate.toFixed(2)
+    // card generation 
+    cardCreation(choice, rate)
   })
+  var cardCount = 0
+
+
+
+  function cardCreation(choice, rate) {
+    cardCount++
+    var newCard = $("<div></div>")
+    newCard.attr("class", "card")
+    newCard.attr("id", "card-" + cardCount)
+
+    var newBody = $("<div></div>")
+    var newButton = $("<button></button>")
+    newButton.text("X")
+    newButton.attr("class", "quit")
+    newButton.attr("id", cardCount)
+
+    newBody.attr("class", "card-body")
+    newBody.text(choice + " is worth " + rate + " USD")
+
+    newCard.append(newBody)
+    newCard.append(newButton)
+
+    $(".card-holder").prepend(newCard)
+    $(".quit").on("click", (evt) => {
+      var id = evt.target.id
+      clearCard(id)
+    })
+
+  }
+
+
+  function clearCard(cardNum) {
+
+    var card = $("#card-" + cardNum)
+    card.remove()
+  }
+
 
   // ***Currency Exchange API code***
   var amount = "1.0";
