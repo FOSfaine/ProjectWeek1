@@ -55,6 +55,7 @@ $(document).ready(function (window) {
   //This api call pulls assets by name and matches them with their asset-id. ONLY for search bar.
   var nameQueryURL = "https://coinapi.p.rapidapi.com/v1/assets";
   var coinName = ""
+  var allRates = []
   $.ajax({
     url: nameQueryURL,
     method: "GET",
@@ -69,33 +70,27 @@ $(document).ready(function (window) {
       var assetId = response[i].asset_id;
       var assetName = response[i].name;
       var assetInfo = assetName + ": " + assetId;
+      allRates.push({
+        name: assetName,
+        id: assetId
+      })
       $("#currencies").append($("<option>").val(assetInfo));
       // console.log("Coin name: " + assetName, ": " + assetId);
+
     }
+    console.log(allRates[5].id)
 
 
-
-  });
-
-  $("#searchGo").on('click', () => {
-    console.log("go")
-    let choice = $("#searchInput").val()
-    let search = ""
-    let rate = ""
-    for (i = 3; i > 0; i--) {
-      search = search.concat((choice[choice.length - i]))
-    }
-    search = search.trim()
-    console.log(search)
-    $.ajax({
-      url: nameQueryURL,
-      method: "GET",
-      headers: {
-        "x-rapidapi-host": "coinapi.p.rapidapi.com",
-        "x-rapidapi-key": "0a2f41c915msh0dad1ae484cc461p162b61jsn3b3ffcff3072"
+    $("#searchGo").on('click', () => {
+      console.log("go")
+      let choice = $("#searchInput").val()
+      let search = ""
+      let rate = ""
+      for (i = 3; i > 0; i--) {
+        search = search.concat((choice[choice.length - i]))
       }
-    }).then(function (response) {
-      var ratesArray = response.rates;
+      search = search.trim()
+      console.log(search)
 
       for (var j = 0; j < 199; j++) {
 
