@@ -92,12 +92,16 @@ nav{
 #newUserClick,
 #eUserSignIn,
 #xpw{
-    text-align:right;
+    text-align:left;
+    float:right;
 }
 
 #eUserClick,
 #newUserClick{
-    display:none;
+/*     display:none; */
+    text-align:right;
+    color:white;
+    padding-top:10px;
 }
 
 #title-style{
@@ -112,7 +116,7 @@ nav{
     float:left;
     padding-top:45px;
 }
-@media only screen and (max-width: 1150px) {
+@media only screen and (max-width: 1135px) {
     #signUp,
     #eUserClick,
     #newUserClick,
@@ -121,4 +125,14 @@ nav{
         text-align:left;
         float:right;
     }
+    nav{
+        height:200px;
+    }
+}
+
+#authForm{
+    width:700px;
+    height:auto;
+    float:right;
+    padding-top:25px;
 }
