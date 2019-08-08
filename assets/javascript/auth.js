@@ -88,18 +88,16 @@ $(document).ready(() => {
             userEmail = user.email;
             userPhoto = user.photoURL;
             userEmailVerified = user.emailVerified;
-            //     if (window.location != "https://estherecho.github.io/ProjectWeek1/user-index.html")
+            if (window.location != "https://estherecho.github.io/ProjectWeek1/user-index.html")
 
-            //         window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html")
-            // } else {
-            //     console.log("no user sign-in")
-            //     if (window.location != "https://estherecho.github.io/ProjectWeek1/index.html")
-            //         // window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html");
-            //         window.location.replace("https://estherecho.github.io/ProjectWeek1/index.html")
-            $(".main-content").prepend("Welcome: " + user.email + "!")
+                window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html")
         } else {
-            console.log("logged oUT")
+            console.log("no user sign-in")
+            if (window.location != "https://estherecho.github.io/ProjectWeek1/index.html")
+                window.location.replace("https://estherecho.github.io/ProjectWeek1/index.html")
+            $(".main-content").prepend("Welcome: " + user.email + "!")
         }
+
     });
 
 })
