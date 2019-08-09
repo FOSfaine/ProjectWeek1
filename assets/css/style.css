@@ -94,6 +94,8 @@ nav {
 
 .card-body {
     color: white;
+    padding-left:50px;
+    padding-right:50px;
 }
 
 .card-holder{
