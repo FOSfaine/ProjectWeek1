@@ -1,5 +1,10 @@
 $(document).ready(() => {
-    // Firebase Auth
+
+    // Initialize Firebase
+    const db = firebase.database();
+    const auth = firebase.auth()
+
+
     console.log('ready')
     $("#submitNew").on('click', () => {
         event.preventDefault();
@@ -7,20 +12,14 @@ $(document).ready(() => {
         var userPass = $("#passNew").val().trim()
 
         // Passwork check and make sure the email is not already in our system
-        if (passCheck(userPass)) {
-            firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).catch(function (error) {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
+        firebase.auth().createUserWithEmailAndPassword(userEmail, userPass).then(cred => {
 
-            });
-            $("#emailNew").text("")
-            $("#passNew").text("")
+            console.log(cred.user)
+            $("#emailNew").val("")
+            $("#passNew").val("")
+        })
 
 
-        } else {
-            console.log("Invaild Password")
-        }
         // if (user) {
         //   user.updateEmail(userEmail).then(function () {
         //     // Update successful.
@@ -36,6 +35,8 @@ $(document).ready(() => {
         //   console.log("creation success")
         // }
     })
+
+
 
     function passCheck(pass) {
         // Must use a capital letter
@@ -87,16 +88,18 @@ $(document).ready(() => {
             userEmail = user.email;
             userPhoto = user.photoURL;
             userEmailVerified = user.emailVerified;
-            if (window.location != "https://estherecho.github.io/ProjectWeek1/user-index.html")
+            if (window.location != "https://estherecho.github.io/ProjectWeek1/user-index.html") {
 
                 window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html")
+            }
+            $(".main-content").prepend("Welcome: " + user.email + "!")
         } else {
             console.log("no user sign-in")
             if (window.location != "https://estherecho.github.io/ProjectWeek1/index.html")
-                // window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html");
                 window.location.replace("https://estherecho.github.io/ProjectWeek1/index.html")
 
         }
+
     });
 
 })
