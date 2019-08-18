@@ -1,17 +1,22 @@
 html,
 body {
-    height: 100%;
+    height: auto;
+    padding-top:20vh;
 }
 
 body {
-    background-color: rgb(231, 231, 231);
+    background-color: rgb(20, 20, 20);
     font-size: 18px;
+    color:white;
+    background-image:url("../images/background1.jpg");
+    background-position:center;
+    background-size:auto;
 }
 
 .container-style {
     display: grid;
-    grid-template-columns: 25% 75%;
-    grid-template-rows: 100px 100px;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 15vh;
 }
 
 
@@ -20,10 +25,11 @@ body {
 .side-content,
 .bottom-content,
 .main-content {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(20, 20, 20);
     text-align: center;
-    color: black;
+    color: white;
     border: 1px solid black;
+    display:none;
 }
 
 .main-content {
@@ -71,4 +77,62 @@ body {
     font-size: x-large;
     font-weight: bold;
 
+}
+
+nav{
+    height:150px;
+    background-color:rgba(0, 0, 0, 0.322);
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:15px;
+}
+
+#signUp,
+#eUserClick,
+#newUserClick,
+#eUserSignIn,
+#xpw{
+    text-align:left;
+    float:right;
+}
+
+#eUserClick,
+#newUserClick{
+/*     display:none; */
+    text-align:right;
+    color:white;
+    padding-top:10px;
+}
+
+#title-style{
+    color:white;
+    font-size:50px;
+}
+
+#title-style:hover{
+    text-decoration:none;
+}
+#title-div{
+    float:left;
+    padding-top:45px;
+}
+@media only screen and (max-width: 1135px) {
+    #signUp,
+    #eUserClick,
+    #newUserClick,
+    #eUserSignIn,
+    #xpw{
+        text-align:left;
+        float:right;
+    }
+    nav{
+        height:200px;
+    }
+}
+
+#authForm{
+    width:700px;
+    height:auto;
+    float:right;
+    padding-top:25px;
 }
