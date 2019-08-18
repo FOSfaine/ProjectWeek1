@@ -87,14 +87,14 @@ $(document).ready(() => {
             userEmail = user.email;
             userPhoto = user.photoURL;
             userEmailVerified = user.emailVerified;
-            if (window.location != "https://estherecho.github.io/ProjectWeek1/user-index.html")
+            if (window.location != "https://fosfaine.github.io/ProjectWeek1/user-index.html")
 
-                window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html")
+                window.location.replace("https://fosfaine.github.io/ProjectWeek1/user-index.html")
         } else {
             console.log("no user sign-in")
-            if (window.location != "https://estherecho.github.io/ProjectWeek1/index.html")
-                // window.location.replace("https://estherecho.github.io/ProjectWeek1/user-index.html");
-                window.location.replace("https://estherecho.github.io/ProjectWeek1/index.html")
+            if (window.location != "https://fosfaine.github.io/ProjectWeek1/index.html")
+                // window.location.replace("https://fosfaine.github.io/ProjectWeek1/user-index.html");
+                window.location.replace("https://fosfaine.github.io/ProjectWeek1/index.html")
 
         }
     });
