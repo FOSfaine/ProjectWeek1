@@ -88,7 +88,7 @@ $(document).ready(() => {
             userEmail = user.email;
             userPhoto = user.photoURL;
             userEmailVerified = user.emailVerified;
-          
+
             if (window.location != "https://fosfaine.github.io/ProjectWeek1/user-index.html")
 
                 window.location.replace("https://fosfaine.github.io/ProjectWeek1/user-index.html")
@@ -97,15 +97,9 @@ $(document).ready(() => {
             if (window.location != "https://fosfaine.github.io/ProjectWeek1/index.html")
                 // window.location.replace("https://fosfaine.github.io/ProjectWeek1/user-index.html");
                 window.location.replace("https://fosfaine.github.io/ProjectWeek1/index.html")
-            }
-            $(".main-content").prepend("Welcome: " + user.email + "!")
-        } else {
-            console.log("no user sign-in")
-            if (window.location != "https://fosfaine.github.io/ProjectWeek1/index.html")
-                window.location.replace("https://fosfaine.github.io/ProjectWeek1/index.html")
-
         }
 
-    });
+        $(".main-content").prepend("Welcome: " + user.email + "!")
 
+    });
 })
