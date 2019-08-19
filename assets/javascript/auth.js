@@ -81,27 +81,25 @@ $(document).ready(() => {
     var userEmailVerified = ""
 
     firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                console.log("Ayo we logged in")
+        if (user) {
+            console.log("Ayo we logged in")
 
-                userName = user.displayName;
-                userEmail = user.email;
-                userPhoto = user.photoURL;
-                userEmailVerified = user.emailVerified;
+            userName = user.displayName;
+            userEmail = user.email;
+            userPhoto = user.photoURL;
+            userEmailVerified = user.emailVerified;
 
-                if (window.location != "https://fosfaine.github.io/ProjectWeek1/user-index.html")
+            if (window.location != "https://fosfaine.github.io/ProjectWeek1/user-index.html")
 
-                    window.location.replace("https://fosfaine.github.io/ProjectWeek1/user-index.html")
-            } else {
-                console.log("no user sign-in")
-                if (window.location != "https://fosfaine.github.io/ProjectWeek1/index.html")
-                    // window.location.replace("https://fosfaine.github.io/ProjectWeek1/user-index.html");
-                    window.location.replace("https://fosfaine.github.io/ProjectWeek1/index.html")
-            }
-
-            $(".main-content").prepend("Welcome: " + user.email + "!")
+                window.location.replace("https://fosfaine.github.io/ProjectWeek1/user-index.html")
+        } else {
+            console.log("no user sign-in")
+            if (window.location != "https://fosfaine.github.io/ProjectWeek1/index.html")
+                // window.location.replace("https://fosfaine.github.io/ProjectWeek1/user-index.html");
+                window.location.replace("https://fosfaine.github.io/ProjectWeek1/index.html")
         }
 
-    });
+        $(".main-content").prepend("Welcome: " + user.email + "!")
 
+    });
 })
